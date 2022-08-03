@@ -1,25 +1,76 @@
 ---
 title: "Lab1"
-author: "Danniel Behar"
+author: "Daniel Behar"
 date: "2022-08-03"
 output: rmarkdown::github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+setwd("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1")
+library(readxl)
+library(dplyr)
 ```
 
-## R Markdown
+```{r funciones extra, include=FALSE}
+extract = function(dir)
+{
+  data = read_excel(dir)
+  return(data[1:8])
+}
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+comb = function(data1, num)
+{
+  data1$FECHA <- matrix(nombres[num], nrow = dim(data1)[1])
+  return(data1)
+}
 ```
 
-## Including Plots
+
+## Parte 1
+
+Al haber unificado todas las columnas y filas necesarias, me quedó un total de:
+9 Columnas
+2180 Filas
+
+```{r manipulacion, include=FALSE}
+nombres = list.files(pattern = ".xlsx")
+nombres = substr(nombres, start = 1, stop = 7)
+
+Mes1 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/01-2018.xlsx")
+Mes2 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/02-2018.xlsx")
+Mes3 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/03-2018.xlsx")
+Mes4 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/04-2018.xlsx")
+Mes5 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/05-2018.xlsx")
+Mes6 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/06-2018.xlsx")
+Mes7 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/07-2018.xlsx")
+Mes8 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/08-2018.xlsx")
+Mes9 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/09-2018.xlsx")
+Mes10 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/10-2018.xlsx")
+Mes11 = extract("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/11-2018.xlsx")
+
+Mes1 = comb(Mes1, 1)
+Mes2 = comb(Mes2, 2)
+Mes3 = comb(Mes3, 3)
+Mes4 = comb(Mes4, 4)
+Mes5 = comb(Mes5, 5)
+Mes6 = comb(Mes6, 6)
+Mes7 = comb(Mes7, 7)
+Mes8 = comb(Mes8, 8)
+Mes9 = comb(Mes9, 9)
+Mes10 = comb(Mes10, 10)
+Mes11 = comb(Mes11, 11)
+
+UNIF = bind_rows(Mes1, Mes2, Mes3, Mes4, Mes5, Mes6, Mes7, Mes8, Mes9, Mes10, Mes11)
+write.csv(UNIF, file="Concatenado.csv", row.names = FALSE)
+```
+
+```{r data}
+print(UNIF)
+```
+
+
+## Parte 2
 
 You can also embed plots, for example:
 
@@ -27,4 +78,3 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
