@@ -27,11 +27,63 @@ print(UNIF)
     ## 10  10000010 CHICHARRO~     76002     1343 Ferna~ 336.       90 Camio~ 01-2018  
     ## # ... with 2,170 more rows
 
-## Including Plots
+## Parte 2
 
-You can also embed plots, for example:
+``` r
+datos = generate_df(10)
+print(datos)
+```
 
-![](Script_files/figure-gfm/pressure-1.png)<!-- -->
+    ##     a  b  c  d
+    ## 1  10 20 25 40
+    ## 2   7 15 27 39
+    ## 3   6 20 28 31
+    ## 4  10 15 24 37
+    ## 5   2 19 28 31
+    ## 6   7 16 26 35
+    ## 7   2 19 23 39
+    ## 8   6 19 23 31
+    ## 9   2 15 22 39
+    ## 10  9 17 22 40
 
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+``` r
+lista = lapply(datos, FUN = mode)
+print(lista)
+```
+
+    ## $a
+    ## [1] 2
+    ## 
+    ## $b
+    ## [1] 15
+    ## 
+    ## $c
+    ## [1] 22
+    ## 
+    ## $d
+    ## [1] 31
+
+## Parte 3
+
+Aca estoy imprimiendo el head de los datos que salieron de haber
+exportado el .txt de carros de la SAT en Enero 2019. Esta tiene 11
+columnas y 1,211,691 filas
+
+``` r
+head(carros)
+```
+
+    ##   ANIO_ALZA MES NOMBRE_DEPARTAMENTO NOMBRE_MUNICIPIO MODELO_VEHICULO
+    ## 1      2007   5       HUEHUETENANGO    HUEHUETENANGO            2007
+    ## 2      2007   5         EL PROGRESO        EL JICARO            2007
+    ## 3      2007   5          SAN MARCOS             OCOS            2007
+    ## 4      2007   5           ESCUINTLA         SAN JOSÉ            2006
+    ## 5      2007   5             JUTIAPA           MOYUTA            2007
+    ## 6      2007   5           GUATEMALA        FRAIJANES            1997
+    ##            LINEA_VEHICULO TIPO_VEHICULO USO_VEHICULO MARCA_VEHICULO CANTIDAD  X
+    ## 1                SPORT125          MOTO  MOTOCICLETA      ASIA HERO        1 NA
+    ## 2 BT-50 DBL CAB 4X2 TURBO       PICK UP   PARTICULAR          MAZDA        1 NA
+    ## 3                   JL125          MOTO  MOTOCICLETA         KINLON        1 NA
+    ## 4               JL125T-15          MOTO  MOTOCICLETA        JIALING        1 NA
+    ## 5                 JH100-2          MOTO  MOTOCICLETA        JIALING        1 NA
+    ## 6  TACOMA XTRA CAB 4X4 V6       PICK UP   PARTICULAR         TOYOTA        1 NA

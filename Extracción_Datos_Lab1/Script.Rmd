@@ -9,6 +9,7 @@ output: rmarkdown::github_document
 knitr::opts_chunk$set(echo = TRUE)
 setwd("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1")
 library(readxl)
+library(readr)
 library(dplyr)
 ```
 
@@ -23,6 +24,22 @@ comb = function(data1, num)
 {
   data1$FECHA <- matrix(nombres[num], nrow = dim(data1)[1])
   return(data1)
+}
+
+generate_df <- function(tam)
+{ 
+  return(
+    data.frame(
+      a = sample(1:10, size = tam, replace = TRUE),
+      b = sample(11:20, size = tam, replace = TRUE),
+      c = sample(21:30, size = tam, replace = TRUE),
+      d = sample(31:40, size = tam, replace = TRUE)
+    )
+  )
+}
+
+mode <- function(x) {
+   return(as.numeric(names(which.max(table(x)))))
 }
 ```
 
@@ -72,9 +89,23 @@ print(UNIF)
 
 ## Parte 2
 
-You can also embed plots, for example:
+```{r funciones de datos}
+datos = generate_df(10)
+print(datos)
+lista = lapply(datos, FUN = mode)
+print(lista)
+```
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+## Parte 3
+Aca estoy imprimiendo el head de los datos que salieron de haber exportado el .txt de
+carros de la SAT en Enero 2019.
+Esta tiene 11 columnas y 1,211,691 filas
+
+```{r carros, include=FALSE}
+carros = read.delim("C:/Users/danie/Desktop/DataWrangling-2022/Extracción_Datos_Lab1/INE_PARQUE_VEHICULAR_080219.txt", header = TRUE, sep = '|')
+```
+
+```{r print}
+head(carros)
 ```
 
