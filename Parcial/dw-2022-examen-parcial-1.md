@@ -115,7 +115,7 @@ solo puede contener n cantidad de datos DEL MISMO TIPO, mientras que la
 lista puede contener diferentes tipos de valores.
 
 SIETE: Si tratamos de hacer eso, le agregará un valor NULL ya que no
-existe (revisar)
+existe en los niveles
 
 NUEVE: Lo usamos cuando queremos agregar elementos que cumplan con
 cierta condición a una query. Se usa este keyword porque al hacer
@@ -124,11 +124,38 @@ agregaciones no se puede usar el keyword WHERE.
 ## A
 
 ``` r
-###resuelva acá
+parcial_anonimo %>% select(Cliente, Venta, Pais) %>% group_by(Cliente) %>% summarise(TotalV=sum(Venta
+), Paises = n_distinct(Pais) > 1) %>% filter(TotalV>50000) %>% arrange(desc(TotalV)) %>% hchart("column", 
+hcaes(x = Cliente, y = TotalV)) %>% hc_title(text = 
+"<b>Clientes en distintos paises que superan los $50,000 en compras</b>")
 ```
+
+![](dw-2022-examen-parcial-1_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+``` r
+paste0("El cliente mas rentables es af267306 porque es el que mas nos compra en diferentes
+       paises")
+```
+
+    ## [1] "El cliente mas rentables es af267306 porque es el que mas nos compra en diferentes\n       paises"
 
 ## B
 
+Asumimos que se cubren costos cuando las ventas superan los $40,000
+
 ``` r
-###resuelva acá
+parcial_anonimo %>% select(Territorio, Venta) %>% group_by(Territorio) %>% summarise(TotalV=sum(Venta
+)) %>% filter(TotalV<40000) %>% arrange(TotalV) %>% hchart("column", 
+hcaes(x = Territorio, y = TotalV)) %>% hc_title(text = 
+"<b>Regiones en pérdida</b>")
 ```
+
+![](dw-2022-examen-parcial-1_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+``` r
+paste0("La gráfica muestra los territorios en los que ya no debemos operar, ya que
+       en la cola inferior algunos ni reportan ventas y las pérdidas de la región
+       más grande son del 25%")
+```
+
+    ## [1] "La gráfica muestra los territorios en los que ya no debemos operar, ya que\n       en la cola inferior algunos ni reportan ventas y las pérdidas de la región\n       más grande son del 25%"
