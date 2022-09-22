@@ -121,6 +121,18 @@ NUEVE: Lo usamos cuando queremos agregar elementos que cumplan con
 cierta condición a una query. Se usa este keyword porque al hacer
 agregaciones no se puede usar el keyword WHERE.
 
+``` r
+factorial(10)/factorial(10-5)
+```
+
+    ## [1] 30240
+
+``` r
+paste0("Se pueden hacer 30240 examenes distintos")
+```
+
+    ## [1] "Se pueden hacer 30240 examenes distintos"
+
 ## A
 
 ``` r
