@@ -1,7 +1,2 @@
 # DataWrangling-2022
-Repositorio de la clase que contiene todas las practicas que se realizaron en el transcurso del curso
-
-## Lenguajes utilizados
-- SQL
-- Python
-- R
+Course repo in which I stored all the exercises related to Data Wrangling and how to clean data
